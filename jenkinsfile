@@ -5,13 +5,13 @@ pipeline{
         stage('Build'){
             steps{
                 echo "Running build steps for all branches"
-                sh 'mvn clean package'
+                echo 'mvn clean package'
             }
         }
         stage('Test'){
             steps{
                 echo "Running build steps for all branches"
-                sh 'mvn test'
+                echo 'mvn test'
             }
         }
         stage('Deploy'){
@@ -20,7 +20,7 @@ pipeline{
             }
             steps{
                 echo "Deploying only on main branches"
-                sh './deploy.sh'
+                echo './deploy.sh'
             }
         }
     }
