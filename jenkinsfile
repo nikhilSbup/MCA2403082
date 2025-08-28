@@ -1,0 +1,27 @@
+pipeline{
+    agent any
+    
+    stages{
+        stage('Build'){
+            steps{
+                echo "Running build steps for all branches"
+                sh 'mvn clean package'
+            }
+        }
+        stage('Test'){
+            steps{
+                echo "Running build steps for all branches"
+                sh 'mvn test'
+            }
+        }
+        stage('Deploy'){
+            when{
+                branch 'main'
+            }
+            steps{
+                echo "Deploying only on main branches"
+                sh './deploy.sh'
+            }
+        }
+    }
+}
